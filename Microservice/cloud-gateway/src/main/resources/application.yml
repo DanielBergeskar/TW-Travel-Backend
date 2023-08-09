@@ -1,0 +1,23 @@
+server:
+  port: 7070
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: EXCHANGE-SERVICE
+          uri: lb://EXCHANGE-SERVICE
+          predicates:
+            - Path=/exchange/**
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
